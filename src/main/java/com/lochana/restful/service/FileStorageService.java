@@ -38,7 +38,7 @@ public class FileStorageService {
 
         String[] words = word_list.split("\n");
 
-        int level =0;
+        int level;
 
         LevelSelectingStrategyContext levelSelectingStrategyContext = new LevelSelectingStrategyContext();
         levelSelectingStrategyContext.setCompressionStrategy(new wordLengthWiseLevelSelectingStrategy());
@@ -46,7 +46,6 @@ public class FileStorageService {
         for(int i=0;i< words.length;i++){
             String word= words[i].trim();
             level = levelSelectingStrategyContext.selectLevel(word);
-
             Word new_word = new Word(word);
             Level lvl = levelrepo.findByLevelNo(level);
             if(lvl==null){
